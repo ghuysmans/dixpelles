@@ -5,7 +5,12 @@ require_once 'group.php';
 
 show_header();
 
-$q = $db->query('SELECT * FROM homepage');
+if (isset($_GET['q'])) {
+  $x = $_GET['q'];
+  $q = $db->query("SELECT * FROM homepage WHERE orig='$x' OR orig_text LIKE '%$x%' OR target='$x' OR target_text LIKE '%$x%'");
+}
+else
+  $q = $db->query('SELECT * FROM homepage');
 $main = ['id', 'title', 'orig', 'orig_french', 'orig_text', 'target', 'target_french', 'target_text', 'url', 'ts'];
 foreach (group($q, select($main)) as $g) {
 ?>
