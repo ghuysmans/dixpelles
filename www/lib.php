@@ -14,6 +14,6 @@ function french_dt($ts) {
 
 
 require_once 'config.php';
-//$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 session_start();
