@@ -3,7 +3,8 @@ require_once 'lib.php';
 require_once 'template.php';
 
 if (isset($_POST['email']) && isset($_POST['pass'])) {
-	$q = $db->query("SELECT * FROM user WHERE email='{$_POST['email']}' AND password='{$_POST['pass']}'");
+	$q = $db->prepare('SELECT * FROM user WHERE email=? AND password=?');
+	$q->execute([$_POST['email'], $_POST['pass']]);
 	if ($r = $q->fetch()) {
 		$_SESSION['user'] = $r['id'];
 		$_SESSION['admin'] = $r['admin'];
