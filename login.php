@@ -3,7 +3,9 @@ require_once 'lib.php';
 require_once 'template.php';
 
 if (isset($_POST['email']) && isset($_POST['pass'])) {
-	$q = $db->query("SELECT * FROM user WHERE email='{$_POST['email']}' AND password='{$_POST['pass']}'");
+	$sql = "SELECT * FROM user WHERE email='{$_POST['email']}' AND password='{$_POST['pass']}'";
+	try {
+	$q = $db->query($sql);
 	if ($r = $q->fetch()) {
 		$_SESSION['user'] = $r['id'];
 		$_SESSION['admin'] = $r['admin'];
@@ -12,6 +14,10 @@ if (isset($_POST['email']) && isset($_POST['pass'])) {
 	}
 	else
 		$failed = true;
+	}
+	catch (Exception $e) {
+		die("Erreur SQL !<br>$sql<br>" . $e->getMessage());
+	}
 }
 else
 	$failed = false;
