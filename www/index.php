@@ -6,8 +6,8 @@ require_once 'group.php';
 show_header();
 
 if (isset($_GET['q'])) {
-  $x = $_GET['q'];
-  $q = $db->query("SELECT * FROM homepage WHERE orig='$x' OR orig_text LIKE '%$x%' OR target='$x' OR target_text LIKE '%$x%'");
+  $q = $db->prepare('SELECT * FROM homepage WHERE orig=? OR orig_text LIKE ? OR target=? OR target_text LIKE ?');
+  $q->execute([$_GET['q'], '%' . $_GET['q'] . '%', $_GET['q'], '%' . $_GET['q'] . '%']);
 }
 else
   $q = $db->query('SELECT * FROM homepage');
