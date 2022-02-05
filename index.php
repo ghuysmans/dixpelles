@@ -22,7 +22,7 @@ foreach (group($q, select($main)) as $g) {
 		<div class="card-text"><?=quote($g['group']['orig_text'])?></div>
 		<!--<div>&darr;</div>-->
 		<hr>
-		<div class="card-text"><?=$g['group']['target_text']?></div>
+		<div class="card-text"><?=quote($g['group']['target_text'])?></div>
 		<ul class="list-group mt-3">
 			<?php
 			$can_post = isset($_SESSION['user']);
