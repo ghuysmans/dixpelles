@@ -46,7 +46,7 @@ function show_header($cur) {
 			}
 			?>
 		</ul>
-		<form class="d-flex me-auto" target="index.php">
+		<form class="d-flex me-auto" action="index.php">
 			<input class="form-control me-2" type="search" placeholder="Rechercher..." aria-label="Rechercher" name="q">
 			<!--<button class="btn btn-outline-success" type="submit">Chercher</button>-->
 		</form>
