@@ -60,7 +60,7 @@ function show_lang_sel($name) {
 			$langs[$r['iso639_1']] = $r['french'];
 	}
 ?>
-<select class="form-select" name="<?=$name?>" required>
+<select class="form-select" name="<?=$name?>" id="<?=$name?>" required>
 <?php
 	foreach ($langs as $iso => $fr) {
 		$sel = isset($_POST[$name]) && $_POST[$name] == $iso ? ' selected' : '';
