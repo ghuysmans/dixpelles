@@ -4,7 +4,7 @@ require_once 'template.php';
 
 if (!isset($_SESSION['user'])) {
 	header('HTTP/1.1 401 Unauthorized');
-	show_header();
+	show_header('');
 	ask_login();
 	show_footer();
 }
@@ -17,6 +17,6 @@ else if (isset($_GET['id']) && is_numeric($_GET['id']) && !empty($_POST['review'
 }
 
 header('HTTP/1.1 400 Bad Request');
-show_header();
+show_header('');
 show_alert('danger', "Paramètres invalides.");
 show_footer();

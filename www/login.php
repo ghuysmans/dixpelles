@@ -7,6 +7,7 @@ if (isset($_POST['email']) && isset($_POST['pass'])) {
 	$q->execute([$_POST['email'], $_POST['pass']]);
 	if ($r = $q->fetch()) {
 		$_SESSION['user'] = $r['id'];
+		$_SESSION['email'] = $r['email'];
 		$_SESSION['admin'] = $r['admin'];
 		//TODO handle $_POST['rem']
 		header('Location: index.php');
@@ -18,7 +19,10 @@ if (isset($_POST['email']) && isset($_POST['pass'])) {
 else
 	$failed = false;
 
-show_header();
+show_header('');
+?>
+<h1>Connexion</h1>
+<?php
 if ($failed)
 	show_alert('danger', 'E-mail et/ou mot de passe incorrect(s)');
 ?>

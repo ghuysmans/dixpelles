@@ -1,6 +1,17 @@
 <?php
-function show_header() {
-?>
+$pages = [
+	'index.php' => 'Nouveautés',
+	'#top' => 'Top 20',
+	'submit.php' => 'Soumettre',
+	'#about' => 'À propos'
+];
+$restricted = [
+	'submit.php'
+];
+
+function show_header($cur) {
+	global $pages, $restricted;
+	?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,22 +21,64 @@ function show_header() {
 </head>
 <body>
 <div class="container">
-<h1>Dix Pelles</h1>
-<figure>
-<blockquote class="blockquote">
-<p title="même s'il faut parfois creuser un peu">Nos traducteurs ont du talent<!--,
-même s'il faut parfois creuser pour le trouver-->.</p>
-</blockquote>
-<figcaption class="blockquote-footer">
-Le développeur
-</figcaption>
-</figure>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container-fluid">
+	<a class="navbar-brand" href="#">
+		<img src="logo.svg" class="d-inline-block" width="30">
+		Dix Pelles
+	</a>
+	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mb-2 mb-lg-0">
+			<?php
+			foreach ($pages as $url => $label) {
+				echo '<li class="nav-item">';
+				if (in_array($url, $restricted) && !isset($_SESSION['user']))
+					;
+				else if ($url == $cur) { ?>
+					<a class="nav-link active" aria-current="page" href="<?=$url?>"><?=$label?></a>
+				<?php } else { ?>
+					<a class="nav-link" href="<?=$url?>"><?=$label?></a>
+				<?php }
+				echo '</li>';
+			}
+			?>
+		</ul>
+		<form class="d-flex me-auto" target="index.php">
+			<input class="form-control me-2" type="search" placeholder="Rechercher..." aria-label="Rechercher" name="q">
+			<!--<button class="btn btn-outline-success" type="submit">Chercher</button>-->
+		</form>
+		<?php
+		if (isset($_SESSION['user'])) { ?>
+		<ul class="navbar-nav mb-2 mb-lg-0">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					<?=quote($_SESSION['email'])?>
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<li><a class="dropdown-item" href="#">Profil</a></li>
+					<!--<li><hr class="dropdown-divider"></li>-->
+					<li><a class="dropdown-item" href="logout.php">Déconnexion</a></li>
+				</ul>
+			</li>
+		</ul>
+		<?php
+	}
+		else { ?>
+		<a class="btn btn-primary" href="login.php">Connexion</a>
+		<?php } ?>
+	</div>
+</div>
+</nav>
 <?php
 }
 
 function show_footer() {
 ?>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
 <?php

@@ -3,14 +3,17 @@ require_once 'lib.php';
 require_once 'template.php';
 require_once 'group.php';
 
-show_header();
-
 if (isset($_GET['q'])) {
   $q = $db->prepare('SELECT * FROM homepage WHERE orig=? OR orig_text LIKE ? OR target=? OR target_text LIKE ?');
   $q->execute([$_GET['q'], '%' . $_GET['q'] . '%', $_GET['q'], '%' . $_GET['q'] . '%']);
+  show_header('');
+  ?><h1>Résultats de recherche</h1><?php
 }
-else
+else {
   $q = $db->query('SELECT * FROM homepage');
+  show_header('index.php');
+  ?><h1>Nouveautés</h1><?php
+}
 $main = ['id', 'title', 'orig', 'orig_french', 'orig_text', 'target', 'target_french', 'target_text', 'url', 'ts'];
 foreach (group($q, select($main)) as $g) {
 ?>
