@@ -19,7 +19,7 @@ CREATE TABLE mistranslation(
 	target_text TINYTEXT NOT NULL,
 	url VARCHAR(255) NOT NULL,
 	submitted_by INT NOT NULL,
-	ts TIMESTAMP NOT NULL,
+	ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY (orig) REFERENCES language(iso639_1),
 	FOREIGN KEY (target) REFERENCES language(iso639_1),
 	FOREIGN KEY (submitted_by) REFERENCES user(id)
