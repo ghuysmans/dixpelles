@@ -30,20 +30,23 @@ if (!$ok) {
 		<input class="form-control" name="title" id="title" value="<?=quote(maybe('title'))?>" required>
 	</div>
 </div>
-<h3>Original</h3>
-<label class="form-label">Langue : <?php show_lang_sel('orig');?></label>
-<textarea class="form-control mb-1" name="orig_text" placeholder="Texte d'origine" required>
-<?=quote(maybe('orig_text'))?>
-</textarea>
-<h3 title="Mauvaise traduction">Trahison</h3>
-<label class="form-label">Langue : <?php show_lang_sel('target');?></label>
-<textarea class="form-control mb-1" name="target_text" placeholder="Texte défiguré" required>
-<?=quote(maybe('target_text'))?>
-</textarea>
-<h3>Source</h3>
-<label class="form-label" for="url">Adresse (URL)</label>
-<div class="input-group">
-<input class="form-control" type="url" name="url" id="url" value="<?=quote(maybe('url'))?>" required>
+<div class="row">
+	<div class="col-md-6 mb-2">
+		<h2>Original</h2>
+		<label class="form-label" for="orig">Langue</label>
+		<?php show_lang_sel('orig');?>
+		<label class="form-label" for="orig_text">Texte</label>
+		<textarea class="w-100" name="orig_text" id="orig_text"><?=quote(maybe('orig_text'))?></textarea>
+	</div>
+	<div class="col-md-6 mb-2">
+		<h2>Trahison</h2>
+		<label class="form-label" for="target">Langue</label>
+		<?php show_lang_sel('target');?>
+		<label class="form-label" for="target_text">Texte</label>
+		<textarea class="w-100" name="target_text" id="target_text"><?=quote(maybe('target_text'))?></textarea>
+		<label class="form-label" for="url">Adresse (URL)</label>
+		<input class="form-control" type="url" name="url" id="url" value="<?=quote(maybe('url'))?>" required>
+	</div>
 </div>
 <button class="btn btn-primary">Envoyer</button>
 </form>
