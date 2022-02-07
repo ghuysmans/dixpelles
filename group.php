@@ -11,7 +11,9 @@ function select($fields) {
 function group($q, $f) {
     $g = null;
     $arr = [];
+    $once = false;
     while ($r = $q->fetch()) {
+        $once = true;
         $k = $f($r);
         if ($g != $k) {
             if (!is_null($g)) {
@@ -22,5 +24,6 @@ function group($q, $f) {
         }
         $arr[] = $r;
     }
-    yield array('group' => $g, 'items' => $arr);
+    if ($once)
+        yield array('group' => $g, 'items' => $arr);
 }
