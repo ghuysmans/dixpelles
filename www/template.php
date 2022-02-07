@@ -23,7 +23,7 @@ function show_header($cur) {
 <div class="container">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <div class="container-fluid">
-	<a class="navbar-brand" href="#">
+	<a class="navbar-brand" href="index.php">
 		<img src="logo.svg" class="d-inline-block" width="30">
 		Dix Pelles
 	</a>
