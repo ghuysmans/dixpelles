@@ -15,7 +15,9 @@ else {
   ?><h1>Nouveautés</h1><?php
 }
 $main = ['id', 'title', 'orig', 'orig_french', 'orig_text', 'target', 'target_french', 'target_text', 'url', 'ts'];
+$once = false;
 foreach (group($q, select($main)) as $g) {
+$once = true;
 ?>
 <div class="card mb-3">
 	<div class="card-body">
@@ -59,6 +61,11 @@ foreach (group($q, select($main)) as $g) {
 		</ul>
 	</div>
 </div>
+<?php
+}
+if (!$once) {
+?>
+<p>Nous n'avons rien trouvé.</p>
 <?php
 }
 
