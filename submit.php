@@ -2,7 +2,7 @@
 require_once 'lib.php';
 require_once 'template.php';
 
-show_header();
+show_header('submit.php');
 
 $ok = false;
 if (empty($_SESSION['user']))
@@ -23,7 +23,7 @@ else if (isset($_POST['orig']))
 if (!$ok) {
 ?>
 <form method="post">
-<h2>Rapporter une trahison</h2>
+<h1>Rapporter une trahison</h1>
 <div class="row mb-3">
 	<div class="col">
 		<label class="form-label" for="title">Titre</label>
