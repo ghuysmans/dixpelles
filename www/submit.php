@@ -36,14 +36,14 @@ if (!$ok) {
 		<label class="form-label" for="orig">Langue</label>
 		<?php show_lang_sel('orig');?>
 		<label class="form-label" for="orig_text">Texte</label>
-		<textarea class="w-100" name="orig_text" id="orig_text"><?=quote(maybe('orig_text'))?></textarea>
+		<textarea class="w-100" name="orig_text" id="orig_text" required><?=quote(maybe('orig_text'))?></textarea>
 	</div>
 	<div class="col-md-6 mb-2">
 		<h2>Trahison</h2>
 		<label class="form-label" for="target">Langue</label>
 		<?php show_lang_sel('target');?>
 		<label class="form-label" for="target_text">Texte</label>
-		<textarea class="w-100" name="target_text" id="target_text"><?=quote(maybe('target_text'))?></textarea>
+		<textarea class="w-100" name="target_text" id="target_text" required><?=quote(maybe('target_text'))?></textarea>
 		<label class="form-label" for="url">Adresse (URL)</label>
 		<input class="form-control" type="url" name="url" id="url" value="<?=quote(maybe('url'))?>" required>
 	</div>
